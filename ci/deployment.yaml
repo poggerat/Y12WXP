@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: y12wxp-tuts
+  namespace: plutus-tools
+  labels:
+    app: y12wxp-tuts
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: y12wxp-tuts
+  template:
+    metadata:
+      labels:
+        app: y12wxp-tuts
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        fsGroup: 101
+      containers:
+        - name: nginx
+          image: registry-adapter.tools.cosmic.sky/core-platform/plutus/test/y12wxp/tuts:a652d36
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 101
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+            - name: nginx-run
+              mountPath: /var/run
+            - name: nginx-tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "25m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}
+        - name: nginx-tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: y12wxp-tuts
+  namespace: plutus-tools
+  labels:
+    app: y12wxp-tuts
+spec:
+  selector:
+    app: y12wxp-tuts
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: y12wxp-tuts
+  namespace: plutus-tools
+  labels:
+    app: y12wxp-tuts
+  annotations:
+    kubernetes.io/ingress.class: main-nlb-external
+    sky.uk/frontend-scheme: internet-facing
+    sky.uk/allow: 0.0.0.0/0
+    sky.uk/backend-timeout-seconds: "35"
+    sky.uk/exact-path: "false"
+spec:
+  rules:
+    - host: y12wxp-tuts.dev.ce.eu-central-1-aws.npottdc.sky
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: y12wxp-tuts
+                port:
+                  number: 80

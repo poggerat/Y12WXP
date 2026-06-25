@@ -12,6 +12,7 @@ This repository contains everything you need: guides to get set up, background o
 |---------|---------|
 | [intro/](./intro/README.md) | Four guides to get you oriented and set up — start here on Day 1 |
 | [projects/](./projects/README.md) | Ten project briefs to choose from — pick one and build it |
+| [tuts/](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/index.html) | Six self-paced, single-file HTML tutorials — open in a browser, no install |
 
 ---
 
@@ -31,6 +32,24 @@ This repository contains everything you need: guides to get set up, background o
 | 10 | [Calculus Explainer](./projects/10-calculus-explainer/README.md) | ⭐⭐⭐⭐⭐ | 3D calculus visualiser (Three.js + Python) | A-Level Maths |
 
 **Difficulty:** ⭐⭐ = GCSE level &nbsp; ⭐⭐⭐ = GCSE+ &nbsp; ⭐⭐⭐⭐ = A-Level &nbsp; ⭐⭐⭐⭐⭐ = stretch
+
+---
+
+## Self-paced tutorials
+
+Single-file HTML tutorials you can open straight from GitHub — no install, no setup. Click any link below to render it in your browser.
+
+| Tutorial | Track | Length | Level |
+|---|---|---|---|
+| [All tutorials (landing page)](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/index.html) | — | — | — |
+| [Computer Fundamentals](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/computer-fundamentals-tutorial.html) | Start here | ~60 min | Beginner |
+| [Git & GitHub](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/git-tutorial.html) | Foundations | ~45 min | Beginner |
+| [Python for Beginners](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/python-tutorial.html) | Foundations | ~45 min | Beginner |
+| [JavaScript for Beginners](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/javascript-tutorial.html) | Foundations | ~45 min | Beginner |
+| [Maths for LLMs](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/math-for-llms-tutorial.html) | AI & Maths | ~40 min | Intermediate |
+| [Build an LLM from scratch](https://html-preview.github.io/?url=https://github.com/kwr14/Y12WXP/blob/main/tuts/llm-from-scratch-tutorial.html) | AI & Maths | ~50 min | Advanced |
+
+Links are routed through [html-preview.github.io](https://html-preview.github.io/) so the tutorials render as proper interactive pages rather than as raw HTML source.
 
 ---
 
